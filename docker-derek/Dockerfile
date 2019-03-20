@@ -34,7 +34,9 @@ RUN apt-get update && apt-get install -y \
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 
 # Additional Python libraries
-RUN pip install git+https://github.com/zhao1701/dz-utils@dev
+RUN pip install git+https://github.com/zhao1701/dz-utils@dev && \
+    pip uninstall -y tensorflow-gpu && \
+    pip install tensorflow==1.13.1 keras tensorflow_probability
 
 # Ports
 EXPOSE 6006 8000-9000
